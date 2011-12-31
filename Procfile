@@ -1,2 +1,2 @@
-worker: ./main.rb
-redis: redis-server
+web: ./main.rb
+#redis: redis-server
