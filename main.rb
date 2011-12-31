@@ -1,0 +1,40 @@
+#! /usr/bin/env ruby
+# Nyx, a personal Robot, somewhere between siri and Hubot
+
+require 'rubygems'
+require File.expand_path("../config/environment", __FILE__)
+
+class NyxConnection < EventMachine::Connection
+    attr_accessor :options, :status
+
+    def receive_data(data)
+        puts "#{@status} -- #{data}"
+        send_data("hello\n")
+    end
+end
+
+EM.kqueue = true if EM.kqueue?
+
+EventMachine.run do
+	
+	#include BigRainbowHead::SubSystemManager
+	#BigRainbowHead::SubSystem.manager.load_sub_systems
+	
+	EM.start_server 'localhost', THE_NUMBER_OF_NYX, NyxConnection do |conn|
+		conn.options = {:my => 'options'}
+		conn.status = :OK
+	end
+
+
+	EM::PeriodicTimer.new 5 do
+		http = EventMachine::HttpRequest.new('http://maniacalrobot.co.uk/').get
+
+    	http.errback { p 'Uh oh' }
+    	http.callback {
+    	  p http.response_header.status
+    	  p http.response_header
+    	  ##p http.response
+    	}
+	end
+
+end
