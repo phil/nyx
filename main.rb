@@ -31,7 +31,14 @@ EventMachine.run do
 	# 	conn.status = :OK
 	# end
 
-	
+	class NyxWebInterface << Sinatra::Base
+		get "/" do
+			"Hello World"
+		end
+	end
+
+	NyxWebInterface.run! :port => THE_NUMBER_OF_NYX
+
 
 	EM::PeriodicTimer.new 5 do
 		http = EventMachine::HttpRequest.new('http://maniacalrobot.co.uk/').get
