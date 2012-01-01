@@ -1,6 +1,6 @@
 require "bundler/setup"
 
-THE_NUMBER_OF_NYX = 2188  # b=2, r=18, h=8
+# THE_NUMBER_OF_NYX = 2188  # b=2, r=18, h=8
 THE_ROOT_OF_NYX = File.expand_path("#{__FILE__}/../../")
 
 #ENV['BUNDLE_GEMFILE'] = File.expand_path("Gemfile")
