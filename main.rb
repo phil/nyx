@@ -1,6 +1,12 @@
 #! /usr/bin/env ruby
 # Nyx, a personal Robot, somewhere between siri and Hubot
 
+#puts ENV["p"]
+#ARGV.each do|a|
+#  puts "Argument: #{a}"
+#end
+#puts ARGV[ARGV.index("-p") + 1]
+
 require 'rubygems'
 require File.expand_path("../config/environment", __FILE__)
 
@@ -20,7 +26,7 @@ EventMachine.run do
 	#include BigRainbowHead::SubSystemManager
 	#BigRainbowHead::SubSystem.manager.load_sub_systems
 	
-	EM.start_server 'localhost', (ENV["p"] || 3000).to_i, NyxConnection do |conn|
+	EM.start_server 'localhost', THE_NUMBER_OF_NYX, NyxConnection do |conn|
 		conn.options = {:my => 'options'}
 		conn.status = :OK
 	end
