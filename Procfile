@@ -1,2 +1,2 @@
-web: bundle exec main.rb
+web: bundle exec ruby main.rb
 #redis: redis-server
