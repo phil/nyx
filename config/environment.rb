@@ -9,6 +9,6 @@ Bundler.require(:default) if defined?(Bundler)
 #Bundler.require(:default, (@env || "development")) if defined?(Bundler) # For loading developemnt gems
 
 # Load Libs
-Dir.glob(File.join("**", "lib", "*.rb")) do |rb|
-	require File.expand_path(rb)
-end
+#Dir.glob(File.join("**", "lib", "*.rb")) do |rb|
+#	require File.expand_path(rb)
+#end
