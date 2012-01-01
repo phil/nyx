@@ -26,11 +26,12 @@ EventMachine.run do
 	#include BigRainbowHead::SubSystemManager
 	#BigRainbowHead::SubSystem.manager.load_sub_systems
 	
-	EM.start_server 'localhost', THE_NUMBER_OF_NYX, NyxConnection do |conn|
-		conn.options = {:my => 'options'}
-		conn.status = :OK
-	end
+	# EM.start_server 'localhost', THE_NUMBER_OF_NYX, NyxConnection do |conn|
+	# 	conn.options = {:my => 'options'}
+	# 	conn.status = :OK
+	# end
 
+	
 
 	EM::PeriodicTimer.new 5 do
 		http = EventMachine::HttpRequest.new('http://maniacalrobot.co.uk/').get
