@@ -10,14 +10,14 @@
 require 'rubygems'
 require File.expand_path("../config/environment", __FILE__)
 
-class NyxConnection < EventMachine::Connection
-    attr_accessor :options, :status
+# class NyxConnection < EventMachine::Connection
+#     attr_accessor :options, :status
 
-    def receive_data(data)
-        puts "#{@status} -- #{data}"
-        send_data("hello\n")
-    end
-end
+#     def receive_data(data)
+#         puts "#{@status} -- #{data}"
+#         send_data("hello\n")
+#     end
+# end
 
 EM.kqueue = true if EM.kqueue?
 
@@ -31,7 +31,7 @@ EventMachine.run do
 	# 	conn.status = :OK
 	# end
 
-	class NyxWebInterface << Sinatra::Base
+	class NyxWebInterface < Sinatra::Base
 		get "/" do
 			"Hello World"
 		end
@@ -39,13 +39,11 @@ EventMachine.run do
 
 	NyxWebInterface.run! :port => THE_NUMBER_OF_NYX
 
-
-	EM::PeriodicTimer.new 5 do
+	EM::PeriodicTimer.new 120 do
 		http = EventMachine::HttpRequest.new('http://maniacalrobot.co.uk/').get
 
     	http.errback { p 'Uh oh' }
     	http.callback {
-    	  p http.response_header.status
     	  p http.response_header
     	  ##p http.response
     	}
