@@ -31,22 +31,18 @@ EventMachine.run do
 	# 	conn.status = :OK
 	# end
 
+	Nyx::SubSystem.manager.load_sub_systems
+
 	class NyxWebInterface < Sinatra::Base
 		get "/" do
 			"Hello World"
 		end
 	end
 
+	puts "Booting website"
 	NyxWebInterface.run! :port => THE_NUMBER_OF_NYX
-
-	EM::PeriodicTimer.new 120 do
-		http = EventMachine::HttpRequest.new('http://maniacalrobot.co.uk/').get
-
-    	http.errback { p 'Uh oh' }
-    	http.callback {
-    	  p http.response_header
-    	  ##p http.response
-    	}
-	end
+	#Thin::Server.start NyxWebInterface, "0.0.0.0", THE_NUMBER_OF_NYX
 
 end
+
+puts "bye bye..."

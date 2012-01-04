@@ -1,6 +1,8 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    activesupport (3.1.0)
+      multi_json (~> 1.0)
     addressable (2.2.6)
     daemons (1.1.5)
     em-hiredis (0.1.0)
@@ -20,9 +22,11 @@ GEM
       rubyzip
       term-ansicolor (~> 1.0.5)
     hiredis (0.3.2)
+    i18n (0.6.0)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     mime-types (1.17.2)
+    multi_json (1.0.4)
     rack (1.4.0)
     rack-protection (1.2.0)
       rack
@@ -45,10 +49,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport (= 3.1.0)
   em-hiredis
   em-http-request
   eventmachine
   foreman
   heroku
+  i18n
   sinatra
   thin

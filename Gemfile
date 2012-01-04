@@ -11,3 +11,7 @@ gem 'heroku'
 
 # Process Management
 gem "foreman"
+
+# Extras
+gem "activesupport", "3.1.0", :require => 'active_support/all'
+gem 'i18n'
