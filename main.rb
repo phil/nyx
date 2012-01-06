@@ -8,7 +8,6 @@
 #puts ARGV[ARGV.index("-p") + 1]
 
 require 'rubygems'
-require 'java'
 require File.expand_path("../config/environment", __FILE__)
 require File.expand_path("../web/web", __FILE__)
 
@@ -20,6 +19,8 @@ require File.expand_path("../web/web", __FILE__)
 #         send_data("hello\n")
 #     end
 # end
+
+puts RUBY_PLATFORM
 
 EM.kqueue = true if EM.kqueue?
 
