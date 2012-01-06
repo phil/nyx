@@ -11,6 +11,8 @@ puts "NYX Port: #{THE_NUMBER_OF_NYX}"
 THE_ROOT_OF_NYX = File.expand_path("#{__FILE__}/../../")
 puts "NYX Root: #{THE_ROOT_OF_NYX}"
 
+THE_UPTIME_OF_NYX = 0
+
 #ENV['BUNDLE_GEMFILE'] = File.expand_path("Gemfile")
 #Bundler.setup
 Bundler.require(:default) if defined?(Bundler)

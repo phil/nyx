@@ -50,6 +50,7 @@ EventMachine.run do
 
 	EventMachine.add_periodic_timer 2 do
 		puts "fire!"
+		THE_UPTIME_OF_NYX += 1
 	end
 
 end
