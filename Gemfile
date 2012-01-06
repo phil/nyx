@@ -1,6 +1,7 @@
 source :rubygems
 
 gem "eventmachine", "0.12.10"
+#gem "java", :group => [:production]
 gem 'em-hiredis' # Non Blocking Redis for Eventmachine
 gem 'em-http-request'
 

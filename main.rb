@@ -8,6 +8,7 @@
 #puts ARGV[ARGV.index("-p") + 1]
 
 require 'rubygems'
+require 'java'
 require File.expand_path("../config/environment", __FILE__)
 require File.expand_path("../web/web", __FILE__)
 
