@@ -1,7 +1,11 @@
 require "bundler/setup"
 
+begin
 puts ARGV.inspect
 THE_NUMBER_OF_NYX = ARGV[ARGV.index("-p") + 1] # Get Port number from command line
+rescue
+	THE_NUMBER_OF_NYX = 5000
+end
 puts "NYX Port: #{THE_NUMBER_OF_NYX}"
 
 THE_ROOT_OF_NYX = File.expand_path("#{__FILE__}/../../")

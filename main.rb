@@ -9,6 +9,7 @@
 
 require 'rubygems'
 require File.expand_path("../config/environment", __FILE__)
+require File.expand_path("../web/web", __FILE__)
 
 # class NyxConnection < EventMachine::Connection
 #     attr_accessor :options, :status
@@ -22,6 +23,13 @@ require File.expand_path("../config/environment", __FILE__)
 EM.kqueue = true if EM.kqueue?
 
 EventMachine.run do
+
+	# module TcpSocketInterface
+	# end
+
+	# EventMachine.start_server '127.0.0.1', 5001, TcpSocketInterface do |connection|
+		
+	# end
 	
 	#include BigRainbowHead::SubSystemManager
 	#BigRainbowHead::SubSystem.manager.load_sub_systems
@@ -33,15 +41,15 @@ EventMachine.run do
 
 	Nyx::SubSystem.manager.load_sub_systems
 
-	class NyxWebInterface < Sinatra::Base
-		get "/" do
-			"Hello World"
-		end
-	end
+	
 
 	puts "Booting website"
 	NyxWebInterface.run! :port => THE_NUMBER_OF_NYX
 	#Thin::Server.start NyxWebInterface, "0.0.0.0", THE_NUMBER_OF_NYX
+
+	EventMachine.add_periodic_timer 2 do
+		puts "fire!"
+	end
 
 end
 
