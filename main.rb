@@ -8,7 +8,6 @@
 #puts ARGV[ARGV.index("-p") + 1]
 
 require 'rubygems'
-puts "RUBY: #{RUBY_PLATFORM}"
 require File.expand_path("../config/environment", __FILE__)
 require File.expand_path("../web/web", __FILE__)
 
@@ -40,7 +39,7 @@ EventMachine.run do
 	# 	conn.status = :OK
 	# end
 
-	# Nyx::SubSystem.manager.load_sub_systems
+	Nyx::SubSystem.manager.load_sub_systems
 
 	
 
