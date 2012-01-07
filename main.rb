@@ -9,7 +9,6 @@
 
 require 'rubygems'
 require File.expand_path("../config/environment", __FILE__)
-require File.expand_path("../web/web", __FILE__)
 
 # class NyxConnection < EventMachine::Connection
 #     attr_accessor :options, :status
@@ -39,7 +38,7 @@ EventMachine.run do
 	# 	conn.status = :OK
 	# end
 
-	Nyx::SubSystem.manager.load_sub_systems
+	Nyx::SubSystemManager.instance.load_sub_systems
 
 	
 

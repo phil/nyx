@@ -5,11 +5,12 @@ class Nyx::SubSystemManager
 	include Singleton
 	
 	attr_accessor :installed_sub_systems
+
+	def initialize
+		self.installed_sub_systems ||= Array.new
+	end
 	
 	def load_sub_systems
-		
-		self.installed_sub_systems ||= Array.new
-		
 		
 		Dir.glob(File.join("**", "sub_systems", "*")) do |sub_system_dir|
 			

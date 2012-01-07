@@ -19,8 +19,10 @@ Bundler.require(:default) if defined?(Bundler)
 #Bundler.require(:default, (@env || "development")) if defined?(Bundler) # For loading developemnt gems
 
 #Load Libs
-Dir.glob(File.join(THE_ROOT_OF_NYX, "**", "lib", "*.rb")) do |rb|#
-	puts rb
-	require File.expand_path(rb)
-end
-
+#lib_search = File.join(THE_ROOT_OF_NYX, "lib/**", "*.rb")
+#puts "lib search: #{lib_search}"
+#Dir.glob(lib_search) do |rb|
+#	puts "loading lib: #{rb}"
+#	require File.expand_path(rb)
+#end
+require File.join(THE_ROOT_OF_NYX, "lib", "nyx")
