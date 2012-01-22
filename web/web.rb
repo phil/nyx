@@ -1,5 +1,12 @@
 class NyxWebInterface < Sinatra::Base
+
+	set :views, File.join(THE_ROOT_OF_NYX, "web", "views")
+	set :public, File.join(THE_ROOT_OF_NYX, "web", "public")
+	set :static, true
+
 		get "/" do
-			"Hello World uptime: #{THE_UPTIME_OF_NYX}"
+			@iss = Nyx::SubSystemManager.instance.installed_sub_systems
+			@uptime = Nyx::SubSystemManager.installed :uptime
+			erb :base
 		end
 	end

@@ -36,4 +36,37 @@ class Nyx::SubSystemManager
 		#EM.watch_file sub_system_file, BigRainbowHead::SubSystemFileWatch if opts[:setup_watcher]
 	end
 	
+
+	# Sends the incoming message to all 
+	def broadcast_incoming_message message
+		# Let all the subsystems know about it
+		installed_sub_systems.each do |sub_system|
+			EM.next_tick do
+				puts "broadcasting message to #{sub_system.name}"
+				sub_system.incoming_message(message)
+			end
+		end
+	end
+
+	def broadcast_outgoing_message message
+		
+	end
+
+	def send_message message
+		
+	end
+
+	def send_message_to_room message, room_id
+		puts "sending message to room #{room_id}"
+		# find campfire
+		campfire = Nyx::SubSystemManager.instance.installed_sub_systems.detect { |sys| sys.name == :campfire }
+		room = campfire.rooms.detect { |room| room.id == room_id }
+		room.speak message
+	end
+
+
+	def self.installed sub_system
+		Nyx::SubSystemManager.instance.installed_sub_systems.detect { |sys| sys.name == sub_system }
+	end
+	
 end

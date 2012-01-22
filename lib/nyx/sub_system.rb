@@ -12,5 +12,14 @@ class Nyx::SubSystem
 	# Override in system 
 	def finalize
 	end
+
+
+	def name
+		self.class.to_s.underscore.to_sym
+	end
+
+	def incoming_message message
+		
+	end
 	
 end

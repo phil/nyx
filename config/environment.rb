@@ -26,3 +26,11 @@ Bundler.require(:default) if defined?(Bundler)
 #	require File.expand_path(rb)
 #end
 require File.join(THE_ROOT_OF_NYX, "lib", "nyx")
+
+# Need to fix a few acvtivesupport infections
+ActiveSupport::Inflector.inflections do |inflect|
+#   inflect.plural /^(ox)$/i, '\1en'
+	inflect.singular 'status', 'status'
+#   inflect.irregular 'person', 'people'
+#   inflect.uncountable %w( fish sheep )
+end

@@ -46,10 +46,6 @@ EventMachine.run do
 	NyxWebInterface.run! :port => THE_NUMBER_OF_NYX
 	#Thin::Server.start NyxWebInterface, "0.0.0.0", THE_NUMBER_OF_NYX
 
-	EventMachine.add_periodic_timer 2 do
-		puts "fire!"
-		THE_UPTIME_OF_NYX += 1
-	end
 
 end
 

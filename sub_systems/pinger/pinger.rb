@@ -9,15 +9,15 @@ class Pinger < Nyx::SubSystem
 
 		puts "Pinger: init"
 		
-		self.timer = EM::PeriodicTimer.new 2 do
+		self.timer = EM::PeriodicTimer.new 10 do
 
 			Pinger.sites.each do |site|
-				puts "Pinger: ping #{site}"
+				#puts "Pinger: ping #{site}"
 
 				http = EM::HttpRequest.new('http://maniacalrobot.co.uk/').get
     			http.errback { p 'Uh oh' }
     			http.callback {
-	    	  		p http.response_header
+	    	  		#p http.response_header
 		    	}	
 			end
 		end

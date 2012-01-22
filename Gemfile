@@ -5,6 +5,8 @@ gem "eventmachine", "0.12.10"
 gem 'em-hiredis' # Non Blocking Redis for Eventmachine
 gem 'em-http-request'
 
+gem 'tinder'
+
 gem 'sinatra', "1.2.6"
 gem 'thin'
 
