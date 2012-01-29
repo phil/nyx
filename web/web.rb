@@ -6,7 +6,7 @@ class NyxWebInterface < Sinatra::Base
 
 		get "/" do
 			@iss = Nyx::SubSystemManager.instance.installed_sub_systems
-			@uptime = Nyx::SubSystemManager.installed :uptime
+			@uptime = Nyx::SubSystemManager.installed(:status).uptime
 			erb :base
 		end
 	end

@@ -35,7 +35,11 @@ class Campfire < Nyx::SubSystem
 		room.join
 		room.listen { |msg|
 
-			puts msg
+			Nyx::Log.info "#{msg}"
+
+			message = Nyx::Message.new
+			message.room_id = msg.room_id
+			message.body = msg.body
 
 			case msg.type
 			when "TextMessage"
@@ -52,7 +56,7 @@ class Campfire < Nyx::SubSystem
 			when "KickMessage"
 			
 			when "EnterMessage"
-				room.speak "Hello"
+				room.speak "Hello #msg"
 			when "LeaveMessage"
 
 			when "SystemMessage"
@@ -84,7 +88,7 @@ class Campfire < Nyx::SubSystem
 		#end
 	end
 
-	def reply
+	def reply message
 		
 	end
 
@@ -104,7 +108,6 @@ class Campfire < Nyx::SubSystem
 			#puts "nyx message in: #{msg}"
 		else
 			puts "processing text message"
-			#EM.next_tick { room.speak "I hear you master!" }
 			EM.next_tick {
 				Nyx::SubSystemManager.instance.broadcast_incoming_message message
 			}
