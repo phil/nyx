@@ -1,8 +1,12 @@
 <h1>Nyx</h1>
 
 <h2>Sub Systems</h2>
+<ul>
 <% @iss.each do |s| %>
-<%= s.name %>
+	<li><%= s.name %></li>
 <% end %>
+</ul>
+
+<h2></h2>
 
 <%= "Uptime: #{@uptime}" %>
