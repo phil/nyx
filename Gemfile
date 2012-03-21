@@ -16,7 +16,7 @@ gem 'heroku'
 gem "foreman"
 
 # Performance Management
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', :group => :production
 
 # Extras
 gem "activesupport", "3.1.0", :require => 'active_support/all'

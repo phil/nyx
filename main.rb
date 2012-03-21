@@ -13,7 +13,6 @@ EventMachine.run do
 	puts "Booting website"
 	NyxWebInterface.run! :port => THE_NUMBER_OF_NYX
 	#Thin::Server.start NyxWebInterface, "0.0.0.0", THE_NUMBER_OF_NYX
-
 end
 
 puts "bye bye..."

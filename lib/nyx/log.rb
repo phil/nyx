@@ -7,8 +7,8 @@ class Nyx::Log
 	attr_accessor :logger
 
 	def initialize *args
-		#self.logger = Logger.new(File.join(THE_ROOT_OF_NYX, "log/nyx.log"))
-		self.logger = Logger.new STDOUT
+		self.logger = Logger.new(File.join(THE_ROOT_OF_NYX, "log/nyx.log"))
+		#self.logger = Logger.new STDOUT
 		self.logger.level = Logger::DEBUG
 	end
 

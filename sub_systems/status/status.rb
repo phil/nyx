@@ -16,7 +16,7 @@ class Status < Nyx::SubSystem
 			puts "status check!"
 			str = ""
 			str << "Uptime: #{uptime}"		
-			Nyx::SubSystemManager.instance.send_message_to_room str, message.room_id
+			Nyx::SubSystemManager.instance.reply_to_message message, str
 		end
 	rescue
 		return
