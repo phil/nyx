@@ -7,6 +7,7 @@ class Nyx::Log
 	attr_accessor :logger
 
 	def initialize *args
+        Dir.mkdir dir unless File.exists?(dir) 
 		self.logger = Logger.new(File.join(THE_ROOT_OF_NYX, "log/nyx.log"))
 		#self.logger = Logger.new STDOUT
 		self.logger.level = Logger::DEBUG
@@ -37,5 +38,8 @@ class Nyx::Log
 		Nyx::Log.instance.logger.debug message
 	end
 
+    def dir
+      File.join(THE_ROOT_OF_NYX, "log")
+    end
 
 end
