@@ -21,3 +21,9 @@ gem 'newrelic_rpm', :group => :production
 # Extras
 gem "activesupport", "3.1.0", :require => 'active_support/all'
 gem 'i18n'
+
+# Testing
+gem 'rspec'
+gem 'capybara'
+
+gem 'simplecov', :require => false

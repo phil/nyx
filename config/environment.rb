@@ -1,7 +1,6 @@
 require "bundler/setup"
 
 begin
-	puts ARGV.inspect
 	THE_NUMBER_OF_NYX = ARGV[ARGV.index("-p") + 1] # Get Port number from command line
 rescue
 	THE_NUMBER_OF_NYX = 5000

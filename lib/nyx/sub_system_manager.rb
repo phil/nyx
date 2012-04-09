@@ -12,10 +12,9 @@ class Nyx::SubSystemManager
 
   def load_sub_systems
 
-    Dir.glob(File.join("**", "sub_systems", "*")) do |sub_system_dir|
+    Dir.glob(File.join("sub_systems", "*.rb")) do |sub_system_file|
 
-      sub_system_file = File.join File.expand_path(sub_system_dir), File.basename(sub_system_dir) + ".rb"
-
+        Nyx::Log.info "Nyx::SubSystemManager loading subsystem '#{sub_system_file}'"
       if File.exists? sub_system_file
         Nyx::Log.info "Nyx::SubSystemManager loading subsystem '#{sub_system_file}'"
         self.load_sub_system sub_system_file
