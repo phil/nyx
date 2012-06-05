@@ -25,5 +25,8 @@ gem 'i18n'
 # Testing
 gem 'rspec'
 gem 'capybara'
+gem 'cucumber'
+
+gem 'em-spec'
 
 gem 'simplecov', :require => false

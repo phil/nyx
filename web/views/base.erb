@@ -1,11 +1,12 @@
 <h1>Nyx</h1>
 
 <h2>Sub Systems</h2>
-<ul>
 <% @iss.each do |s| %>
-	<li><%= s.name %></li>
+    <section>
+      <h3><%= s.name %></h3>
+      <pre><%= s.subsystem_status %></pre>
+    </section>
 <% end %>
-</ul>
 
 <h2></h2>
 
