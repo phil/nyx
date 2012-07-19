@@ -13,6 +13,7 @@ class SubSystemExample < Nyx::SubSystem
     message.reply "Another Alpha Response"
   end
 
+
   listen_for /beta/, :beta_action
 
   listen_for "EnterMessage" => /(.*)/ do |message|
@@ -43,11 +44,11 @@ describe SubSystemExample do
   describe "Sub System Listen Hooks" do
     it "listens for /alpha/" do
       ex = SubSystemExample.new
-      ex.listeners.detect { |listener| listener[:pattern] == /alpha/ }.should_not be_empty
+      ex.listeners.detect { |listener| listener.pattern == /alpha/ }.should_not be_nil
     end
     it "listens for /beta/" do
       ex = SubSystemExample.new
-      ex.listeners.detect { |listener| listener[:pattern] == /beta/ }.should_not be_empty
+      ex.listeners.detect { |listener| listener.pattern == /beta/ }.should_not be_nil
     end
 
     it "responds to 'alpha'" do
@@ -55,7 +56,7 @@ describe SubSystemExample do
       message.should_receive(:reply).with("Alpha Response")
 
       ex = SubSystemExample.new
-      ex.listeners.detect { |listener| listener[:pattern] == /alpha/ }[:handler].call(message)
+      ex.listeners.detect { |listener| listener.pattern == /alpha/ }.call(message)
     end
 
     it "responds to another 'alpha'" do
@@ -63,7 +64,7 @@ describe SubSystemExample do
       message.should_receive(:reply).with("Another Alpha Response")
 
       ex = SubSystemExample.new
-      ex.listeners.detect { |listener| listener[:type] == "LeaveMessage" && listener[:pattern] == /alpha/ }[:handler].call(message)
+      ex.listeners.detect { |listener| listener.type == "LeaveMessage" && listener.pattern == /alpha/ }.call(message)
     end
 
     it "responds to 'beta'" do
@@ -71,7 +72,7 @@ describe SubSystemExample do
       message.should_receive(:reply).with("Beta Response")
 
       ex = SubSystemExample.new
-      ex.listeners.detect { |listener| listener[:pattern] == /beta/ }[:handler].call(message)
+      ex.listeners.detect { |listener| listener.pattern == /beta/ }.call(message)
     end
 
 

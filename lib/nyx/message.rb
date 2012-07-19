@@ -4,8 +4,9 @@ class Nyx::Message
   attr_accessor :body
 
   attr_accessor :type
-
-  attr_accessor :matches
+  def type
+    @type ||= "AnyMessage"
+  end
 
   def initialize *args
   end

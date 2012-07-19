@@ -4,7 +4,7 @@
 <% @iss.each do |s| %>
     <section>
       <h3><%= s.name %></h3>
-      <pre><%= s.subsystem_status %></pre>
+      <pre><%= s.status.inspect %></pre>
     </section>
 <% end %>
 

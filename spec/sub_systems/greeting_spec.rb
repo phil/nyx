@@ -7,10 +7,8 @@ describe Greeting do
     message.should_receive(:reply).with("Hello Foo Bar")
 
     greeting = Greeting.new
-    #raise greeting.listeners.inspect
     greeting.listeners.each do |listener| 
-      #raise listener.inspect
-      listener[:handler].call message if listener[:type] == "EnterMessage"
+      listener.call message
     end
   end
 

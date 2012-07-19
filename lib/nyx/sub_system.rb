@@ -1,4 +1,5 @@
 require 'active_support/all'
+require_relative 'listener'
 
 module Nyx
   class SubSystem
@@ -52,15 +53,9 @@ module Nyx
       #raise self.class.listeners.keys.inspect
       #raise self.class.listeners.inspect
       return Array.new if self.class.listeners.nil? || self.class.listeners.empty?
-      self.class.listeners.collect do |hash|
-        #raise listeners.inspect
-        hash[:handler] = if hash[:method_tag]
-                    self.method(hash[:method_tag]) 
-                  else
-                    hash[:block]
-                  end
-                      
-        hash
+      self.class.listeners.collect do |listener|
+        listener.method_handler = self.method(listener.method_symbol) if listener.method_symbol
+        listener
       end
     end
 
@@ -78,7 +73,14 @@ module Nyx
         # v is the regex
 
         # self.listeners is the class instance variable accessor
-        self.listeners << {:type => k, :pattern => v, :method_tag => method_tag, :block => block}
+        #listener = Listener.new({:type => k, :pattern => v, :method_tag => method_tag, :block => block})
+        listener = Listener.new
+        listener.type = k
+        listener.pattern = v
+        listener.method_symbol = method_tag
+        listener.block_handler = block
+
+        self.listeners << listener
       end
 
     end

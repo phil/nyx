@@ -23,10 +23,9 @@ gem "activesupport", "3.1.0", :require => 'active_support/all'
 gem 'i18n'
 
 # Testing
-group [:test, :development] do
+group :test, :development do
   gem 'rspec'
   gem 'capybara'
-  gem 'cucumber'
 
   gem 'em-spec'
 

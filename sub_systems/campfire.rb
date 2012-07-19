@@ -12,9 +12,9 @@ class Campfire < Nyx::SubSystem
     self.rooms = Array.new
     connect
 
-    Nyx::Memory.get("campfire_room") do |value|
-      enter_room value
-    end
+    #Nyx::Memory.get("campfire:rooms") do |value|
+      enter_room "Nyx Development"
+    #end
   end
 
   def finalize
@@ -91,10 +91,12 @@ class Campfire < Nyx::SubSystem
 
     if message.from == CAMPFIRE_NYX_EMAIL
       #puts "nyx message in: #{msg}"
+      Nyx::Log.info "Nyx Spoke! #{message.body}"
     else
-      EM.next_tick {
-        Nyx::SubSystemManager.instance.broadcast_incoming_message message
-      }
+        #Nyx::SubSystemManager.instance.broadcast_incoming_message message
+        EM.next_tick do
+          Nyx::MessageManager.broadcast message
+        end
     end
   end
 
@@ -105,7 +107,7 @@ class Campfire < Nyx::SubSystem
     end
   end
 
-  def subsystem_status
+  def status
     {
       :rooms => self.rooms
     }
