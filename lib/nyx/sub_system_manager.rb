@@ -77,5 +77,9 @@ module Nyx
       Nyx::SubSystemManager.instance.installed_sub_systems.detect { |sys| sys.name == sub_system }
     end
 
+    def self.sub_systems
+      Nyx::SubSystemManager.instance.installed_sub_systems
+    end
+
   end
 end

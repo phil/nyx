@@ -14,7 +14,7 @@ module Nyx
 
     def redis
       @redis ||= EM::Hiredis.connect
-      select_database NYX_ENV
+      select_database ::NYX_ENV
       @redis
     end
 

@@ -3,6 +3,8 @@ require_relative '../../../lib/nyx/listener'
 module Nyx
   describe Listener do
 
+    before :all do puts __FILE__; end
+
     let(:listener){ Listener.new }
 
     describe :process do
@@ -77,15 +79,13 @@ module Nyx
     end
 
     describe :type_match_for_message do
-      before do
-        listener.stub(:type){ "AnyMessage" }
-      end
-
       it "matches 'AnyMessage' messages" do
+        listener.stub(:type){ "AnyMessage" }
         message = mock(:message, :type => "AnyMessage")
         listener.type_match_for_message(message).should be_true
       end
       it "does not match 'FooBarMessage' messages" do
+        listener.stub(:type){ "NotFooBarMessage" }
         message = mock(:message, :type => "FooBarMessage")
         listener.type_match_for_message(message).should be_false
       end

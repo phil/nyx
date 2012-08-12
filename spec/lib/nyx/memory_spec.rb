@@ -2,21 +2,23 @@ require 'em-spec/rspec'
 require_relative "../../../lib/nyx/memory.rb"
 require 'support/singleton_helper'
 
+puts "\r\n"+__FILE__
+
 # http://blog.ardes.com/2006/12/11/testing-singletons-with-ruby
 # For Getting Singletons to not be singletons in tests
 #require 'singleton'
 #class <<Singleton
-  #def included_with_reset(klass)
-    #included_without_reset(klass)
-    #class <<klass
-      #def reset_instance
-        #Singleton.send :__init__, self
-        #self
-      #end
-    #end
-  #end
-  #alias_method :included_without_reset, :included
-  #alias_method :included, :included_with_reset
+#def included_with_reset(klass)
+#included_without_reset(klass)
+#class <<klass
+#def reset_instance
+#Singleton.send :__init__, self
+#self
+#end
+#end
+#end
+#alias_method :included_without_reset, :included
+#alias_method :included, :included_with_reset
 #end
 
 #irb(main):026:0> MySingleton.instance
@@ -42,13 +44,13 @@ module Nyx
     describe :ping do
       include EM::Spec
       it "should PONG" do 
-        #memory = Nyx::Memory.clone
         reset_singleton Nyx::Memory
-        Nyx::Memory::NYX_ENV = "test"
+        ::NYX_ENV = "test"
         Nyx::Memory.ping do |pong|
           pong.should eql("PONG")
           done
         end
+        EM.add_timer(1){ raise done }
       end
     end
 

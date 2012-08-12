@@ -2,6 +2,8 @@ require_relative '../../sub_systems/ping'
 
 describe Ping do
 
+  before :all do puts __FILE__; end
+
   it "listens for Enter Messages" do
     message = mock(:message)
     message.should_receive(:reply).with("Pong!")

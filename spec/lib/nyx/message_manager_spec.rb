@@ -2,6 +2,8 @@ require 'em-spec/rspec'
 require 'support/singleton_helper'
 require_relative '../../../lib/nyx/message_manager'
 
+puts "\r\n"+__FILE__
+
 module Nyx
   describe MessageManager do
 
@@ -17,8 +19,6 @@ module Nyx
         listener.should_receive(:process).with(message) { done }
         Nyx::MessageManager.stub(:listeners) { [listener] }
         Nyx::MessageManager.broadcast message
-
-        EM.add_timer(1){ raise "Timeout" }
       end
     end
 

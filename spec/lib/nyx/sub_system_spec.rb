@@ -28,6 +28,9 @@ end
 
 describe SubSystemExample do
 
+  before :all do puts __FILE__; end
+
+
   describe "Sub System Commands" do
     it "has an 'add' command" do
       ex = SubSystemExample.new

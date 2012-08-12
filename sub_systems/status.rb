@@ -1,5 +1,12 @@
 class Status < Nyx::SubSystem
 
+  listen_for /status/ do |message|
+    message.reply "Checking System Status"
+    Nyx::SubSystemManager.sub_systems.each do |sub_system|
+      message.reply sub_system.status.to_s
+    end
+  end
+
 	attr_accessor :boot_time
 
 	def initialize *args

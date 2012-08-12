@@ -8,6 +8,9 @@ end
 module Nyx
   describe SubSystemManager do
 
+    before :all do puts __FILE__; end
+
+
     before do
       reset_singleton Nyx::SubSystemManager
     end
@@ -19,9 +22,9 @@ module Nyx
     end
 
     it "Loads a SubSystem" do
-      
+
     end
-    
+
     describe :load_sub_system do
       let(:sub_system_file){ "sub_system_file.rb" }
       let(:listeners){ [mock(:listener)] }
@@ -41,7 +44,7 @@ module Nyx
         subject.sub_system_class("foobar/nyx/subsystems/my_example_system.rb").should eql(MyExampleSystem)
       end
     end
-      
+
 
     it "lists installed systems" do
       Nyx::SubSystemManager.instance.installed_sub_systems
