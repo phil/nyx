@@ -1,0 +1,4 @@
+web: bundle exec ruby main.rb -p $PORT
+
+redis: redis-server config/redis/development.conf
+redistest: redis-server config/redis/test.conf

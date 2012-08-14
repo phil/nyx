@@ -1,6 +1,6 @@
 require 'singleton'
 require 'em-hiredis'
-
+require 'yaml'
 
 module Nyx
   class Memory
@@ -13,22 +13,8 @@ module Nyx
     end
 
     def redis
-      @redis ||= EM::Hiredis.connect
-      select_database ::NYX_ENV
+      @redis ||= EM::Hiredis.connect YAML.load_file(File.join(File.expand_path("#{__FILE__}/../../../"), "config/redis.yml"))[NYX_ENV || "development"]["url"]
       @redis
-    end
-
-    def select_database env = "development"
-      database_id = case env
-                    when "test"
-                      2
-                    when "production"
-                      1
-                    else
-                      # default to development
-                      0
-                    end
-      @redis.select(database_id)
     end
 
     def self.connected?
