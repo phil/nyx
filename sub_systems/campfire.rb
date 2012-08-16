@@ -13,7 +13,7 @@ class Campfire < Nyx::SubSystem
     connect
 
     #Nyx::Memory.get("campfire:rooms") do |value|
-      enter_room "Nyx Development"
+      enter_room "Nyx"
     #end
   end
 
