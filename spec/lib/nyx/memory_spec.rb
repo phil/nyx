@@ -45,12 +45,11 @@ module Nyx
       include EM::Spec
       it "should PONG" do 
         reset_singleton Nyx::Memory
-        ::NYX_ENV = "test"
         Nyx::Memory.ping do |pong|
           pong.should eql("PONG")
           done
         end
-        EM.add_timer(1){ raise done }
+        EM.add_timer(1){ done }
       end
     end
 

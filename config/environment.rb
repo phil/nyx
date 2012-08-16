@@ -1,17 +1,5 @@
 require "bundler/setup"
-
-begin
-	THE_NUMBER_OF_NYX = ARGV[ARGV.index("-p") + 1] # Get Port number from command line
-rescue
-	THE_NUMBER_OF_NYX = 5000
-end
-puts "NYX Port: #{THE_NUMBER_OF_NYX}"
-
-THE_ROOT_OF_NYX = File.expand_path("#{__FILE__}/../../")
-puts "NYX Root: #{THE_ROOT_OF_NYX}"
-
-NYX_ENV = ENV["NYX_ENV"] || "development"
-puts "NYX ENV: #{NYX_ENV}"
+require_relative "../lib/nyx/env"
 
 
 #ENV['BUNDLE_GEMFILE'] = File.expand_path("Gemfile")
@@ -19,7 +7,17 @@ puts "NYX ENV: #{NYX_ENV}"
 Bundler.require(:default) if defined?(Bundler)
 #Bundler.require(:default, (@env || "development")) if defined?(Bundler) # For loading developemnt gems
 
-require File.join(THE_ROOT_OF_NYX, "lib", "nyx")
+
+# Nyx Libs
+require File.join(Nyx::Env.root, "lib", "nyx", "log")
+require File.join(Nyx::Env.root, "lib", "nyx", "memory")
+require File.join(Nyx::Env.root, "lib", "nyx", "message")
+require File.join(Nyx::Env.root, "lib", "nyx", "message_manager")
+require File.join(Nyx::Env.root, "lib", "nyx", "sub_system")
+require File.join(Nyx::Env.root, "lib", "nyx", "sub_system_manager")
+
+# Nyx Web interface
+require File.join(Nyx::Env.root, "web", "web")
 
 # Need to fix a few acvtivesupport infections
 ActiveSupport::Inflector.inflections do |inflect|

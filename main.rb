@@ -10,7 +10,7 @@ EventMachine.run do
 
 	Nyx::SubSystemManager.instance.load_sub_systems
 
-	NyxWebInterface.run! :port => THE_NUMBER_OF_NYX
+	NyxWebInterface.run! :port => Nyx::Env.port
 end
 
 puts "bye bye..."

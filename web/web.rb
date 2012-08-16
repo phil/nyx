@@ -1,7 +1,7 @@
 class NyxWebInterface < Sinatra::Base
 
-  set :views, File.join(THE_ROOT_OF_NYX, "web", "views")
-  set :public, File.join(THE_ROOT_OF_NYX, "web", "public")
+  set :views, File.join(Nyx::Env.root, "web", "views")
+  set :public, File.join(Nyx::Env.root, "web", "public")
   set :static, true
 
   get "/" do

@@ -1,6 +1,7 @@
 require 'singleton'
 require 'em-hiredis'
 require 'yaml'
+require_relative 'env'
 
 module Nyx
   class Memory
@@ -13,7 +14,7 @@ module Nyx
     end
 
     def redis
-      @redis ||= EM::Hiredis.connect YAML.load_file(File.join(File.expand_path("#{__FILE__}/../../../"), "config/redis.yml"))[NYX_ENV || "development"]["url"]
+      @redis ||= EM::Hiredis.connect YAML.load_file(File.join(Nyx::Env.root, "config/redis.yml"))[Nyx::Env.env || "development"]["url"]
       @redis
     end
 
