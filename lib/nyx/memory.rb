@@ -1,5 +1,5 @@
 require 'singleton'
-require 'em-hiredis'
+#require 'em-hiredis'
 require 'yaml'
 require_relative 'env'
 
@@ -8,25 +8,25 @@ module Nyx
 
     include Singleton
 
-    attr_accessor :redis
+    #attr_accessor :redis
 
     def initialize *args
     end
 
-    def redis
-      @redis ||= EM::Hiredis.connect YAML.load_file(File.join(Nyx::Env.root, "config/redis.yml"))[Nyx::Env.env || "development"]["url"]
-      @redis
-    end
+    #def redis
+      #@redis ||= EM::Hiredis.connect YAML.load_file(File.join(Nyx::Env.root, "config/redis.yml"))[Nyx::Env.env || "development"]["url"]
+      #@redis
+    #end
 
-    def self.connected?
-      self.instance.redis.connected?
-    end
+    #def self.connected?
+      #self.instance.redis.connected?
+    #end
 
-    def self.ping
-      self.instance.redis.ping.callback do |pong|
-        yield pong
-      end
-    end
+    #def self.ping
+      #self.instance.redis.ping.callback do |pong|
+        #yield pong
+      #end
+    #end
 
     def self.set keys_and_values = Hash.new
       keys_and_values = keys_and_values.to_a.flatten
@@ -44,6 +44,7 @@ module Nyx
         yield keys_and_values
       end
     end
+
 
   end
 end

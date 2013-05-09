@@ -1,13 +1,14 @@
-source :rubygems
+source "https://rubygems.org"
 
-gem "eventmachine", "0.12.10"
+gem "eventmachine"
 #gem "java", :group => [:production]
 gem 'em-hiredis' # Non Blocking Redis for Eventmachine
 gem 'em-http-request'
+gem 'em-mongo'
 
 gem 'tinder' # Campfire
 
-gem 'sinatra', "1.2.6"
+gem 'sinatra'
 gem 'thin'
 
 gem 'heroku'
@@ -19,7 +20,7 @@ gem "foreman"
 gem 'newrelic_rpm', :group => :production
 
 # Extras
-gem "activesupport", "3.1.0", :require => 'active_support/all'
+gem "activesupport", "3.2.12", :require => 'active_support/all'
 gem 'i18n'
 
 # Testing

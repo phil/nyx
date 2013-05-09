@@ -9,4 +9,6 @@ class NyxWebInterface < Sinatra::Base
     @uptime = Nyx::SubSystemManager.installed(:status).uptime
     erb :base
   end
+
+
 end

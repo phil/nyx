@@ -19,4 +19,12 @@ class Nyx::Message
     self.from == "nyx@maniacalrobot.co.uk"
   end
 
+  def to_h
+    hsh = {class: self.class.to_s}
+    instance_variables.each do |ivar|
+      hsh[ivar.to_s.gsub(/@/, "").to_sym] = instance_variable_get(ivar).to_s
+    end
+    hsh
+  end
+
 end

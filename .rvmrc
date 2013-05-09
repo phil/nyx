@@ -1,2 +1,2 @@
 rvm_install_on_use_flag=1
-rvm 1.9.3-p194@nyx --create
+rvm 2.0.0-p0@nyx --create

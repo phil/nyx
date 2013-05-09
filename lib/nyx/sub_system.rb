@@ -22,7 +22,7 @@ module Nyx
     end
 
     def status
-      Hash.new
+      Hash(status: "OK")
     end
 
     def self.metaclass
@@ -60,6 +60,10 @@ module Nyx
     end
 
     protected
+    #
+    #
+    # listen_for regex, method = nil
+    #
     def self.listen_for regex, method_tag = nil, &block
       
       # could be a simple regex, or a hash {"EnterMessage" => /regex/}
