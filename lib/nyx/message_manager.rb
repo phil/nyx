@@ -1,10 +1,7 @@
-require "singleton"
 require_relative "sub_system_manager"
 
-module Nyx
+class Nyx
   class MessageManager
-
-    include Singleton
 
     attr_accessor :listeners
 
@@ -12,24 +9,28 @@ module Nyx
       self.listeners = Array.new
     end
 
-    def self.broadcast message
+    def broadcast message
       self.listeners.each do |listener|
         EM.next_tick { listener.process message }
       end
       yield if block_given?
     end
 
-    def self.add_listener listener
-      self.instance.listeners << listener
+    def add_listener listener
+      self.listeners.push listener
     end
-    def self.add_listeners listeners
-      listeners.each do |listener|
-        add_listener listener
-      end
-    end
-    def self.listeners
-      self.instance.listeners
+    def add_listeners listeners
+      self.listeners.push(*listeners)
     end
 
   end
+
+  def message_manager
+    @message_manager ||= MessageManager.new
+  end
+
+  def self.message_manager
+    instance.message_manager
+  end
+
 end

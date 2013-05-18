@@ -4,11 +4,15 @@ class Nyx::Message
   attr_accessor :body
 
   attr_accessor :type
+
   def type
     @type ||= "AnyMessage"
   end
 
-  def initialize *args
+  def initialize attrs = Hash.new
+    self.type = attrs[:type] if attrs.key?(:type)
+    self.body = attrs[:body] if attrs.key?(:body)
+    self.from = attrs[:from] if attrs.key?(:from)
   end
 
   def reply text

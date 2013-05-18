@@ -1,7 +1,7 @@
 require 'active_support/all'
 require_relative 'listener'
 
-module Nyx
+class Nyx
   class SubSystem
 
     # Override in subsystem for init
@@ -25,12 +25,17 @@ module Nyx
       Hash(status: "OK")
     end
 
+    def description
+      # Override in sub classes
+      "No description provided"
+    end
+
     def self.metaclass
       class << self
         self
       end
     end
-    def self.meta_eval &blk; metaclass.instance_eval &blk; end
+    def self.meta_eval &blk; metaclass.instance_eval(&blk); end
 
     meta_eval do attr_accessor :commands; end
     def self.command command, description = "", &block

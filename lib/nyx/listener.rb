@@ -1,6 +1,6 @@
 require 'ostruct'
 
-module Nyx
+class Nyx
   class Listener
 
     attr_accessor :type

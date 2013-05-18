@@ -34,7 +34,7 @@ class Campfire < Nyx::SubSystem
     room.join
     room.listen { |msg|
 
-      Nyx::Log.info "#{msg}"
+      Nyx.log.info "#{msg}"
 
       process_message msg
       #case msg.type
@@ -91,7 +91,7 @@ class Campfire < Nyx::SubSystem
 
     if message.from == CAMPFIRE_NYX_EMAIL
       #puts "nyx message in: #{msg}"
-      Nyx::Log.info "Nyx Spoke! #{message.body}"
+      Nyx.log.info "Nyx Spoke! #{message.body}"
     else
         #Nyx::SubSystemManager.instance.broadcast_incoming_message message
         EM.next_tick do

@@ -1,8 +1,0 @@
-development:
-  url: "redis://127.0.0.1:6379"
-
-test:
-  url:
-
-production:
-  url: "redis://redistogo:e2049700b6651334378d84628fc954bf@angler.redistogo.com:9179/"

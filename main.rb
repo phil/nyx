@@ -2,15 +2,14 @@
 # Nyx, a personal Robot, somewhere between siri and Hubot
 
 require 'rubygems'
-require_relative "config/environment"
+
+require "bundler/setup"
+Bundler.require(:default) if defined?(Bundler)
+
+require_relative "lib/nyx"
 
 EM.kqueue = true if EM.kqueue?
 
 EventMachine.run do
-
-	Nyx::SubSystemManager.instance.load_sub_systems
-
-	NyxWebInterface.run! :port => Nyx::Env.port
+	Nyx.sub_system_manager.load_sub_systems
 end
-
-puts "bye bye..."

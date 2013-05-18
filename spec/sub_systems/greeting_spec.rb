@@ -4,12 +4,11 @@ describe Greeting do
 
   before :all do puts __FILE__; end
 
-  it "listens for Enter Messages" do
-    message = mock(:message, :type => "EnterMessage", :from => "Foo Bar")
-    message.should_receive(:reply).with("Hello Foo Bar")
+  it "listens for enter messages" do
+    message = mock(:message, :type => "entermessage", :from => "foo bar")
+    message.should_receive(:reply).with("Hello foo bar")
 
-    greeting = Greeting.new
-    greeting.listeners.each do |listener| 
+    subject.listeners.each do |listener| 
       listener.call message
     end
   end

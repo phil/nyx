@@ -8,8 +8,7 @@ class Status < Nyx::SubSystem
     message.reply "system: #{system_uptime}"
     message.reply "nyx: #{nyx_uptime}"
 
-    Nyx::SubSystemManager.sub_systems.each do |sub_system|
-      sub_system_status = sub_system.status
+    Nyx.sub_system_manager.sub_systems.each do |sub_system|
       message.reply "#{sub_system.name}: #{sub_system.status[:status]} #{sub_system.status.to_s}"
     end
   end
@@ -45,7 +44,7 @@ class Status < Nyx::SubSystem
     if matches["mid"].to_f > 1
       message = Nyx::Message.new
       message.body = "Load Averages are high"
-      Nyx::MessageManager.broadcast message
+      Nyx.message_manager.broadcast message
     end
   end
 	

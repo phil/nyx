@@ -9,22 +9,28 @@ class Tcp < Nyx::SubSystem
     @@connected_clients = Array.new
 
     def post_init
-      Nyx::Log.debug "A client has connected..."
+      Nyx.log.debug "A client has connected..."
+
+      message = Tcp::Message.new :type => "EnterMessage", :body => "Telnet session created"
+      message.connection = self
+      Nyx.message_manager.broadcast message
+      
       @@connected_clients.push self
     end
 
     def unbind
-      Nyx::Log.debug "A client disconnected..."
+      Nyx.log.debug "A client disconnected..."
       @@connected_clients.delete self
     end
 
     def receive_data data
-      Nyx::Log.debug "#{data.strip}"
+      Nyx.log.debug "#{data.strip}"
       message = Tcp::Message.new
       message.body = data.strip
       message.connection = self
-      Nyx::MessageManager.broadcast message
+      Nyx.message_manager.broadcast message
     end
+
   end
 
   class Message < Nyx::Message
