@@ -2,7 +2,7 @@ class Tcp < Nyx::SubSystem
   
   attr_reader :connection
   def initialize *args
-    @connection = EM.start_server "localhost", 5005, Tcp::Connection
+    @connection = EM.start_server "localhost", config.port, Tcp::Connection
   end
 
   class Connection < EM::Connection

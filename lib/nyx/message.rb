@@ -1,5 +1,7 @@
 class Nyx::Message
 
+  attr_reader :created_at
+
   attr_accessor :from
   attr_accessor :body
 
@@ -10,6 +12,7 @@ class Nyx::Message
   end
 
   def initialize attrs = Hash.new
+    @created_at = Time.now
     self.type = attrs[:type] if attrs.key?(:type)
     self.body = attrs[:body] if attrs.key?(:body)
     self.from = attrs[:from] if attrs.key?(:from)

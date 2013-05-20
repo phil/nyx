@@ -65,10 +65,6 @@ class Nyx
     end
 
     protected
-    #
-    #
-    # listen_for regex, method = nil
-    #
     def self.listen_for regex, method_tag = nil, &block
       
       # could be a simple regex, or a hash {"EnterMessage" => /regex/}
@@ -94,6 +90,10 @@ class Nyx
 
     end
     public
+
+    def config
+      @config = Nyx::Configurator.new tag
+    end
 
   end
 end

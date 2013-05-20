@@ -1,6 +1,5 @@
 require 'em-mongo'
-require 'yaml'
-#require_relative 'env'
+require_relative 'configurator'
 
 class Nyx
   class Memory
@@ -8,13 +7,16 @@ class Nyx
     attr_accessor :connection
 
     def connection
-      @connection ||= EM::Mongo::Connection.new('localhost').db("nyx_#{Nyx.env}")
+      @connection ||= EM::Mongo::Connection.new(config.host).db(config.database)
     end
 
-    def collection name
-      connection.collection("name")
-    end
+    #def collection name
+      #connection.collection("name")
+    #end
 
+    def config
+      @config ||= Nyx::Configurator.new :mongo
+    end
   end
 
   attr_accessor :memory
