@@ -20,7 +20,7 @@ gem "foreman"
 gem 'newrelic_rpm', :group => :production
 
 # Extras
-gem "activesupport", "3.2.12", :require => 'active_support/all'
+gem "activesupport", "4.0.0", :require => 'active_support/all'
 gem 'i18n'
 
 # Testing

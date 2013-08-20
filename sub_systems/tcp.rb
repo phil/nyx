@@ -24,7 +24,6 @@ class Tcp < Nyx::SubSystem
     end
 
     def receive_data data
-      Nyx.log.debug "#{data.strip}"
       message = Tcp::Message.new
       message.body = data.strip
       message.connection = self
