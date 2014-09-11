@@ -13,7 +13,7 @@ class Campfire < Nyx::SubSystem
     connect
 
     #Nyx::Memory.get("campfire:rooms") do |value|
-      enter_room "Nyx"
+      enter_room "Nyx Development"
     #end
   end
 
@@ -94,9 +94,7 @@ class Campfire < Nyx::SubSystem
       Nyx.log.info "Nyx Spoke! #{message.body}"
     else
         #Nyx::SubSystemManager.instance.broadcast_incoming_message message
-        EM.next_tick do
-          Nyx::MessageManager.broadcast message
-        end
+          Nyx.message_manager.broadcast message
     end
   end
 
@@ -108,9 +106,7 @@ class Campfire < Nyx::SubSystem
   end
 
   def status
-    {
-      :rooms => self.rooms
-    }
+    "Connected to #{self.rooms.map(&:name).join(", ")}"
   end
 
   def help

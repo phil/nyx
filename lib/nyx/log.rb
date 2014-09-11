@@ -1,53 +1,90 @@
+require "thread"
+require "logger"
+
 class Nyx
-  #class Log
+  class Log
 
-    ##include Singleton
+    # inspired from
+    # https://github.com/jbasinger/log_queue/blob/master/log_queue.rb
 
-    #attr_accessor :logger
+    def initialize
+      @shutdown = false
+      @thread = Thread.new do
+        get_to_da_choppa
+      end
+    end
 
-    #def initialize *args
-      #Dir.mkdir dir unless File.exists?(dir) 
-      #self.logger = Logger.new(File.join(Nyx::Env.root, "log/#{Nyx::Env.env}.log"))
-      ##self.logger = Logger.new STDOUT
-      #self.logger.level = Logger::DEBUG
-    #end
+    def get_to_da_choppa()
 
-    ## FATAL an unhandleable error that results in a program crash
-    #def self.fatal message
-      #Nyx::Log.instance.logger.fatal message
-    #end
+      while (!@shutdown)
+        if (queue.length > 0)
+          val = ""
+          mutex.synchronize do
+            val = queue.shift()
+          end
+          logger.add(val[0],val[1])
+        end
+        sleep(0.1)
+      end
+    end
 
-    ## ERROR a handleable error condition
-    #def self.error message
-      #Nyx::Log.instance.logger.error message
-    #end
+    def finalize
+      @shutdown = true
+      @thread.join
+    end
 
-    ## WARN a warning
-    #def self.warn message
-      #Nyx::Log.instance.logger.warn message
-    #end
+    def add(severity, msg=nil)
+      return if @shutdown
 
-    ## INFO generic (useful) information about system operation
-    #def self.info message
-      #Nyx::Log.instance.logger.info message
-    #end
+      mutex.synchronize do
+        queue.push([severity,msg])
+      end
+    end
 
-    ## DEBUG low-level information for developers
-    #def self.debug message
-      #Nyx::Log.instance.logger.debug message
-    #end
+    def debug(msg=nil)
+      add(Logger::Severity::DEBUG, msg)
+    end
 
-    #def dir
-      #File.join(Nyx::Env.root, "log")
-    #end
+    def info(msg=nil)
+      add(Logger::Severity::INFO, msg)
+    end
 
-  #end
+    def warn(msg=nil)
+      add(Logger::Severity::WARN, msg)
+    end
 
-  def log
-    @log ||= Logger.new File.join(Nyx.root, "log", "#{Nyx.env.env}.log")
+    def error(msg=nil)
+      add(Logger::Severity::ERROR, msg)
+    end
+
+    def fatal(msg=nil)
+      add(Logger::Severity::FATAL, msg)
+    end
+
+    def unknown(msg=nil)
+      add(Logger::Severity::UNKNOWN, msg)
+    end
+
+    protected
+
+    def queue
+      @array ||= Array.new
+    end
+
+    def mutex
+      @mutex ||= Mutex.new
+    end
+
+    def logger
+      @log = Logger.new(STDOUT) # TODO Make this settable
+    end
+
   end
+
+  attr_accessor :log
 
   def self.log
-    instance.log
+    instance.log ||= Nyx::Log.new
   end
+
 end

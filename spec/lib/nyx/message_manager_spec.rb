@@ -19,14 +19,14 @@ describe Nyx::MessageManager do
     end
   end
 
-  describe "::add_listener and ::listeners" do
-    xit "Adds listeners" do
-      listener = mock(:listener)
-      Nyx::MessageManager.add_listener listener
-      Nyx::MessageManager.listeners.should include(listener)
+  #describe "::add_listener and ::listeners" do
+    #xit "Adds listeners" do
+      #listener = mock(:listener)
+      #Nyx::MessageManager.add_listener listener
+      #Nyx::MessageManager.listeners.should include(listener)
 
-      done
-    end
-  end
+      #done
+    #end
+  #end
 
 end

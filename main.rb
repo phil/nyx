@@ -11,5 +11,8 @@ require_relative "lib/nyx"
 EM.kqueue = true if EM.kqueue?
 
 EventMachine.run do
+  Signal.trap("INT")  { EventMachine.stop }
+  Signal.trap("TERM") { EventMachine.stop }
+
 	Nyx.sub_system_manager.load_sub_systems
 end

@@ -22,7 +22,7 @@ class Nyx
     end
 
     def status
-      Hash(status: "OK")
+      "OK"
     end
 
     def description
@@ -55,8 +55,6 @@ class Nyx
 
     def listeners
 
-      #raise self.class.listeners.keys.inspect
-      #raise self.class.listeners.inspect
       return Array.new if self.class.listeners.nil? || self.class.listeners.empty?
       self.class.listeners.collect do |listener|
         listener.method_handler = self.method(listener.method_symbol) if listener.method_symbol
@@ -67,6 +65,7 @@ class Nyx
     protected
     def self.listen_for regex, method_tag = nil, &block
       
+      Nyx.log.info "#{self} listening for #{regex}"
       # could be a simple regex, or a hash {"EnterMessage" => /regex/}
       #if regex is just a regex, then convert it to a hash
       regex = {"AnyMessage" => regex} if regex.is_a?(Regexp)

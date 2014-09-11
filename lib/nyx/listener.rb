@@ -20,10 +20,19 @@ class Nyx
     end
 
     def call message, matches = nil
+      case handler.arity
+      when 1
+        handler.call message
+      when 2
+        handler.call message, matches
+      end
+    end
+
+    def handler
       if self.method_handler?
-        self.method_handler.call message
+        self.method_handler
       else
-        self.block_handler.call message
+        self.block_handler
       end
     end
 

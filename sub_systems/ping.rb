@@ -1,4 +1,6 @@
 require_relative "../lib/nyx/sub_system"
+require_relative "../lib/nyx/message"
+
 
 class Ping < Nyx::SubSystem
 
@@ -10,9 +12,9 @@ class Ping < Nyx::SubSystem
     message.reply "Nyx Goes PONG!"
   end
 
-  #listen_for /ping (?<in>.*)/ do |message|
-    #message.reply "Pong!"
-  #end
-
+  listen_for /echo (?<text>.*)/ do |message, matches|
+    #message.reply "echo …"
+    message.reply matches[:text]
+  end
 
 end

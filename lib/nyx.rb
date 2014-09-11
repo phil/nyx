@@ -1,6 +1,5 @@
 require 'singleton'
 
-
 class Nyx
   include Singleton
 end

@@ -1,4 +1,4 @@
-require 'em-mongo'
+#require 'em-mongo'
 require_relative 'configurator'
 
 class Nyx
@@ -10,9 +10,9 @@ class Nyx
       @connection ||= EM::Mongo::Connection.new(config.host).db(config.database)
     end
 
-    #def collection name
-      #connection.collection("name")
-    #end
+    def collection name
+      connection.collection("name")
+    end
 
     def config
       @config ||= Nyx::Configurator.new :mongo
