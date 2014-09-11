@@ -1,6 +1,10 @@
 nyx
 ===
 
+**NYX running via Eventmachine is no longer being developed. The Basis and ideas
+for nyx will be moved to Celluliod to take advantage of Other ruby
+implimentations and better handling of evented/threaded operations**
+
 nyx is a message based reactor bot. Nyx will listen or poll various sources and
 and act upon the messages received. 
 
