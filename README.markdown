@@ -3,6 +3,9 @@
 Nyx was an evented, reactor based, messaging system. The system will react to
 events gathered online and report back to the user.
 
+Nyx should not be seen just as a chat bot, think more of Nyx as a person bot,
+that provides useful dashboard like information. 
+
 ## Project features
 
 The Core of nyx will be a plugin system. each plugin will be responsbile for
@@ -20,6 +23,10 @@ responsible for the send/receiving of external messages.
 
 - Web interface
 
+
+### Other
+
+- IMAP Inbox checking
 
 
 ## Development
