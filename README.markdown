@@ -29,11 +29,14 @@ responsible for the send/receiving of external messages.
 - IMAP Inbox checking
 
 
+## Running
+
+  ./bin/nyx.rb
+
 ## Development
 
 Nyx is being built completely in the open, please read/copy/contribute as you
 wish
-
 
 
 ## Testing
