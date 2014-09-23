@@ -17,6 +17,6 @@ class Ping
   #
   #      end
   def initialize
-    puts "ping"
   end
+
 end

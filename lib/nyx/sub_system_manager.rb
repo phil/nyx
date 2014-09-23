@@ -3,15 +3,15 @@ class Nyx
 
     include Celluloid
 
-    attr_accessor :linked_sub_systems
+    attr_reader :linked_sub_systems
 
     def initialize
-      self.linked_sub_systems ||= Array.new
+      @linked_sub_systems ||= Array.new
     end
 
     def link_sub_systems
       Dir.glob(File.join("lib", "nyx", "sub_systems", "*")) do |dir|
-        link_sub_system dir
+        Actor.current.async.link_sub_system dir
       end
     end
 

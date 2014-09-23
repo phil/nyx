@@ -5,6 +5,7 @@
 
 # files
 /tags
+.env
 *.gem
 *.rbc
 .bundle
