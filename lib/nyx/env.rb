@@ -20,7 +20,11 @@ class Nyx
   end
 
   def env
-    @env ||= Env.new_link
+    @env ||= Env.new
+  end
+
+  def self.env
+    Actor[:nyx].env
   end
 
 end
