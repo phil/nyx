@@ -12,12 +12,11 @@ class Nyx
     end
 
     def broadcast message
-      #self.listeners.each do |listener|
-      #end
-      #@listeners.each do |listener|
-        #EM.next_tick { listener.process message }
-      #end
-      #yield if block_given?
+      puts "Listeners: #{listeners.inspect}"
+      @listeners.each do |listener|
+        puts "broadcasting to #{listener}"
+        listener.process message
+      end
     end
 
     def add_listener listener
@@ -25,6 +24,7 @@ class Nyx
     end
 
     def add_listeners listeners
+      puts "MessageManager: #{object_id}"
       puts "Adding Listeners: #{listeners.inspect}"
       @listeners.push(*listeners)
     end
@@ -32,7 +32,7 @@ class Nyx
   end
 
   def message_manager
-    @message_manager ||= MessageManager.new_link
+    Actor[:message_manager]
   end
 
 end

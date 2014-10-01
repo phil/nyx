@@ -12,6 +12,10 @@ require_relative "nyx/sub_system"
 require_relative "nyx/sub_system_manager"
 
   def initialize
+    #self.message_manager
+    #Actor[:message_manager] = MessageManager.new_link
+    MessageManager.supervise_as :message_manager
+
     sub_system_manager.link_sub_systems
   end
 

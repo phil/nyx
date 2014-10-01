@@ -27,7 +27,7 @@ class Nyx
       klass = File.basename(file, File.extname(file)).tableize.classify.constantize
 
       sub_system = klass.new_link
-      Actor["nyx"].message_manager.add_listeners sub_system.listeners
+      Actor[:nyx].message_manager.add_listeners sub_system.listeners
       self.linked_sub_systems << sub_system
     end
 

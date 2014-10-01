@@ -1,6 +1,8 @@
 class Nyx
   class Listener
 
+    #include Celluloid
+
     attr_accessor :type
     attr_accessor :pattern
     attr_accessor :method_symbol
@@ -9,11 +11,13 @@ class Nyx
     attr_accessor :method_handler
 
     def method_handler?
-      self.method_handler != nil
+      method_handler != nil
     end
 
     def process message
+      puts "process: #{message}"
       if type_match_for_message(message) && (matches = pattern_matches_for_message(message))
+        puts "calling handler"
         call message, matches
       end
     end
@@ -28,19 +32,19 @@ class Nyx
     end
 
     def handler
-      if self.method_handler?
-        self.method_handler
+      if method_handler?
+        method_handler
       else
-        self.block_handler
+        block_handler
       end
     end
 
     def type_match_for_message message
-      self.type == "AnyMessage" || message.type == self.type
+      type == "AnyMessage" || message.type == self.type
     end
 
     def pattern_matches_for_message message
-      (message.body || "").match(self.pattern)
+      (message.body || "").match(pattern)
     end
 
   end

@@ -22,6 +22,7 @@ class Ping < Nyx::SubSystem
 
   def ping message
     puts "pinging from Ping"
+    message.reply "PONG!"
   end
 
 end
