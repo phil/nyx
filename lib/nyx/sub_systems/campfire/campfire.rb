@@ -1,6 +1,6 @@
-class Campfire
+class Campfire < Nyx::SubSystem
 
-  include Nyx::SubSystem
+  #include Nyx::SubSystem
 
   def initialize
     Actor[:campfire] = Actor.current

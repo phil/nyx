@@ -1,7 +1,8 @@
-class Ping
+class Ping < Nyx::SubSystem
 
-  include Nyx::SubSystem
+  #include Nyx::SubSystem
 
+  listen_for /ping/, :ping
   #listen_for /^ping$/ do |message|
     #message.reply "Pong!"
   #end
@@ -17,6 +18,10 @@ class Ping
   #
   #      end
   def initialize
+  end
+
+  def ping message
+    puts "pinging from Ping"
   end
 
 end

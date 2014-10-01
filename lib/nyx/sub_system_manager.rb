@@ -2,6 +2,7 @@ class Nyx
   class SubSystemManager
 
     include Celluloid
+    trap_exit :sub_system_crashed
 
     attr_reader :linked_sub_systems
 
@@ -21,16 +22,21 @@ class Nyx
       file = File.join(dir, "#{name}.rb")
 
       puts "loading #{file}..."
-      load file
+      require File.join(Nyx.env.root, file)
 
       klass = File.basename(file, File.extname(file)).tableize.classify.constantize
 
       sub_system = klass.new_link
-      # TODO: Add Listeners
+      Actor["nyx"].message_manager.add_listeners sub_system.listeners
       self.linked_sub_systems << sub_system
     end
 
     protected
+
+    def sub_system_crashed sub_system, reason
+      puts "SUBSYSTEM CRASHED: #{sub_system}"
+      puts "                   #{reason}"
+    end
 
   end
 
