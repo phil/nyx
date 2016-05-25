@@ -2,7 +2,9 @@ class Ping < Nyx::SubSystem
 
   #include Nyx::SubSystem
 
-  listen_for /ping/, :ping
+  listen_for /ping/ do |message|
+    message.reply "PONG!"
+  end
   #listen_for /^ping$/ do |message|
     #message.reply "Pong!"
   #end

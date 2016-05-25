@@ -12,9 +12,7 @@ class Nyx
     end
 
     def broadcast message
-      puts "Listeners: #{listeners.inspect}"
       @listeners.each do |listener|
-        puts "broadcasting to #{listener}"
         listener.process message
       end
     end
@@ -24,8 +22,6 @@ class Nyx
     end
 
     def add_listeners listeners
-      puts "MessageManager: #{object_id}"
-      puts "Adding Listeners: #{listeners.inspect}"
       @listeners.push(*listeners)
     end
 

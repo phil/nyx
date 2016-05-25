@@ -18,9 +18,8 @@ class Campfire < Nyx::SubSystem
     room.join
 
     room.listen do |msg|
-      # TODO: Send Message to MessageManager
       message = Campfire::Message.new room, msg
-      room.speak "echo: #{msg.body}" unless message.nyx?
+      Actor[:message_manager].async.broadcast message
     end
   end
 
@@ -35,8 +34,8 @@ class Campfire < Nyx::SubSystem
     end
 
     def reply text
-      room.speak "Reply to Room: #{room.name}"
-      puts "Replying to Campfire Message"
+      room.speak "#{text}"
+      #puts "Replying to Campfire Message"
     end
 
   end
